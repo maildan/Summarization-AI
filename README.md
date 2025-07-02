@@ -5,7 +5,7 @@
 `Maildan_kobart_v3`는 한국어 문서의 **서사적 요약** 및 **자연스러운 이어쓰기**를 목표로 파인튜닝된 KoBART 기반 Transformer 모델입니다.  
 프롬프트 튜닝 기반의 학습 방식을 활용해 문맥을 이해하고 풍부한 요약문을 생성하는 데 강점을 보입니다.
 
----
+
 
 ## 🧠 모델 개요
 
@@ -17,7 +17,7 @@
 | **기반 모델** | [`EbanLee/kobart-summary-v3`](https://huggingface.co/EbanLee/kobart-summary-v3) |
 | **출력 형태** | 배경, 원인, 쟁점 등을 반영한 자연스러운 서사형 요약 문장 |
 
----
+
 
 ## ✨ 주요 기능
 
@@ -32,7 +32,7 @@
 
 > 📌 **활용 예시**: 뉴스, 칼럼, 회의록 등 실용 텍스트를 논리적이며 압축력 있게 재구성
 
----
+
 
 ## 🏗️ 모델 구조 및 아키텍처
 
@@ -49,7 +49,7 @@ python
 - **인코더**: 입력 문장을 벡터로 인코딩  
 - **디코더**: 문맥 기반으로 이어지는 문장 생성  
 
----
+
 
 ## 🧪 파인튜닝 코드 예시
 
@@ -124,15 +124,12 @@ summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
 
 print(summary)
 📦 설치 모듈
+
 bash
-복사
-편집
 pip install torch transformers accelerate datasets
 프롬프트 튜닝 학습 시에는 아래 모듈도 필요합니다:
 
 bash
-복사
-편집
 pip install peft
 📄 라이선스
 ✅ 기반 모델: Apache 2.0 License

@@ -127,14 +127,22 @@ print(summary)
 
 📦 설치 모듈
 
-bash
+🛠️ 설치 모듈 및 역할
+
 ```python
-pip install torch transformers accelerate datasets
-프롬프트 튜닝 학습 시에는 아래 모듈도 필요합니다:
+bash
+pip install torch transformers accelerate datasets peft
 ```
 
-bash
+모듈	설명
+torch	PyTorch 딥러닝 프레임워크로, 모델 학습/추론의 핵심 역할 수행
+transformers	Hugging Face에서 제공하는 모델, 토크나이저, Trainer 등 핵심 도구 모음
+accelerate	다양한 환경(CPU, GPU, TPU 등)에서 손쉬운 분산 학습 및 실행 지원
+datasets	JSONL 포함 다양한 형식의 데이터셋 로딩 및 전처리 기능 제공
+peft	PEFT(프롬프트 튜닝, LoRA 등)를 통해 경량화된 파인튜닝 구현 가능
+
 ```python
+bash
 pip install peft
 ```
 

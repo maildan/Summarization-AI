@@ -125,33 +125,33 @@ summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
 print(summary)
 ```
 
-##📦 설치 모듈
-
-🛠️ 설치 모듈 및 역할
+## 🛠️ 설치 모듈 및 역할
 
 ```python
 bash
 pip install torch transformers accelerate datasets peft
 ```
 
-모듈	설명
-torch	PyTorch 딥러닝 프레임워크로, 모델 학습/추론의 핵심 역할 수행
-transformers	Hugging Face에서 제공하는 모델, 토크나이저, Trainer 등 핵심 도구 모음
-accelerate	다양한 환경(CPU, GPU, TPU 등)에서 손쉬운 분산 학습 및 실행 지원
-datasets	JSONL 포함 다양한 형식의 데이터셋 로딩 및 전처리 기능 제공
-peft	PEFT(프롬프트 튜닝, LoRA 등)를 통해 경량화된 파인튜닝 구현 가능
+| 모듈                 | 설명                                                  |
+| ------------------ | --------------------------------------------------- |
+| **`torch`**        | PyTorch 딥러닝 프레임워크로, 모델 학습/추론의 핵심 역할 수행              |
+| **`transformers`** | Hugging Face에서 제공하는 모델, 토크나이저, `Trainer` 등 핵심 도구 모음 |
+| **`accelerate`**   | 다양한 환경(CPU, GPU, TPU 등)에서 손쉬운 분산 학습 및 실행 지원         |
+| **`datasets`**     | JSONL 포함 다양한 형식의 데이터셋 로딩 및 전처리 기능 제공                |
+| **`peft`**         | PEFT(프롬프트 튜닝, LoRA 등)를 통해 경량화된 파인튜닝 구현 가능           |
+
 
 ```python
 bash
 pip install peft
 ```
 
-##📄 라이선스
+## 📄 라이선스
 
 - 기반 모델: Apache 2.0 License
 - 학습 데이터: 비공개 (비상업적 연구 목적 사용 가능)
 
-##🙋‍♀️ 제작자 정보
+## 🙋‍♀️ 제작자 정보
 
 - 이름: 류현정 (Hienchong)
 - Hugging Face: https://huggingface.co/hienchong

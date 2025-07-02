@@ -1,5 +1,7 @@
 # 🤖 Maildan_AI
 
+모델 페이지: https://huggingface.co/hienchong/Maildan_kobart_v3
+
 ## 📘 Maildan_kobart_v3 모델 카드
 
 `Maildan_kobart_v3`는 한국어 문서의 **서사적 요약** 및 **자연스러운 이어쓰기**를 목표로 파인튜닝된 KoBART 기반 Transformer 모델입니다.  
@@ -155,4 +157,3 @@ pip install peft
 
 - 이름: 류현정 (Hienchong)
 - Hugging Face: https://huggingface.co/hienchong
-- 모델 페이지: https://huggingface.co/hienchong/Maildan_kobart_v3

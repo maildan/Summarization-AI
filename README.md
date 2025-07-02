@@ -1,50 +1,57 @@
-# AI
-maildan_AI
+# 🤖 Maildan_AI
 
-## Maildan\_kobart\_v3 모델 카드
+## 📘 Maildan_kobart_v3 모델 카드
 
-**Maildan\_kobart\_v3**는 한국어 텍스트 요약 및 자연스러운 이어쓰기 생성을 목적으로 개발된 모델입니다. 본 모델은 한국어에 특화된 사전학습 모델 **KoBART**(`gogamza/kobart-base-v2`)를 기반으로, 프롬프트 기반 seq2seq 방식으로 파인튜닝 되었습니다.
+`Maildan_kobart_v3`는 한국어 문서의 **서사적 요약** 및 **자연스러운 이어쓰기**를 목표로 파인튜닝된 KoBART 기반 Transformer 모델입니다.  
+프롬프트 튜닝 기반의 학습 방식을 활용해 문맥을 이해하고 풍부한 요약문을 생성하는 데 강점을 보입니다.
 
+---
 
 ## 🧠 모델 개요
 
-* **모델 타입**: Transformer 기반 Encoder-Decoder (KoBART)
-* **사용 목적**: 기사, 뉴스, 회의록, 이메일 등의 한국어 문서를 요약하거나 서사적으로 이어쓰기
-* **파인튜닝 방식**: 프롬프트 기반 학습 (Prompt + 문맥 입력 → 이어쓰기/요약 출력)
-* **기반 모델**: [EbanLee/kobart-summary-v3]((https://huggingface.co/EbanLee/kobart-summary-v3))
-* **출력 형태**: 배경, 원인, 쟁점 등 문맥을 반영한 자연스러운 요약 또는 이어쓰기 문장
+| 항목 | 설명 |
+|------|------|
+| **모델 타입** | Transformer 기반 Seq2Seq (KoBART) |
+| **학습 목적** | 뉴스, 기사, 회의록, 이메일 등의 한국어 문서를 요약하거나 이어쓰기 |
+| **튜닝 방식** | 프롬프트 기반 파인튜닝 (Prompt + 문맥 입력 → 이어쓰기/요약 출력) |
+| **기반 모델** | [`EbanLee/kobart-summary-v3`](https://huggingface.co/EbanLee/kobart-summary-v3) |
+| **출력 형태** | 배경, 원인, 쟁점 등을 반영한 자연스러운 서사형 요약 문장 |
 
+---
 
-## 🔍 모델 주요 기능 (Top 3 Features)
+## ✨ 주요 기능
 
-1. **서사적이고 논리적인 요약 생성**: 단순 축약이 아닌, 배경-원인-결과의 흐름을 담은 맥락 중심 요약 생성
-2. **프롬프트 기반 맞춤 응답**: 입력된 지시문(prompt)에 따라 다양한 스타일, 어조, 정보 밀도 반영 가능
-3. **경량 구조로 빠른 추론**: 상대적으로 작은 파라미터 수로 로컬 환경에서도 효율적인 추론 성능 제공
+1. **서사적 요약 생성**  
+   단순 요약이 아닌, 논리 구조와 의미 흐름을 담은 3~5문장 요약 생성
 
-> 📌 사용 범위: 한국어 뉴스, 이메일, 회의록 등의 문서를 논리적이고 풍부한 요약으로 재구성하는 데 활용됩니다.
+2. **프롬프트 기반 제어**  
+   지시문(prompt)을 통해 문체, 정보 밀도, 어조를 유연하게 제어 가능
 
+3. **경량 추론 최적화**  
+   상대적으로 적은 파라미터로도 로컬에서 빠르고 안정적인 추론 가능
+
+> 📌 **활용 예시**: 뉴스, 칼럼, 회의록 등 실용 텍스트를 논리적이며 압축력 있게 재구성
+
+---
 
 ## 🏗️ 모델 구조 및 아키텍처
 
+입력 문장 + 프롬프트
+↓
+[ KoBART Seq2Seq 모델 ]
+↓
+출력 문장 (풍부하고 자연스러운 요약/이어쓰기 결과)
+
+python
+복사
+편집
+
+- **인코더**: 입력 문장을 벡터로 인코딩  
+- **디코더**: 문맥 기반으로 이어지는 문장 생성  
+
 ---
 
-**입력 문장 + 프롬프트**  
-↓  
-
-### KoBART 모델 구조  
-- **인코더**: 입력 문장을 벡터로 변환  
-- **디코더**: 이어쓰기 또는 요약 문장 생성  
-
-↓  
-**출력 문장 (풍부하고 자연스러운 요약문)**
-
----
-
-* **KoBART**는 한국어 BART 구조로, 문맥을 양방향으로 이해하고 자연스러운 출력을 생성하는 데 강점을 가집니다.
-* Seq2Seq 구조 덕분에, 문장을 조건부로 생성할 수 있어 요약, 번역, 이어쓰기에 최적입니다.
-
-
-## 🧪 파인튜닝 코드
+## 🧪 파인튜닝 코드 예시
 
 ```python
 from datasets import load_dataset
@@ -58,8 +65,7 @@ dataset = load_dataset("json", data_files={"train": "path/to/train_summarized_10
 
 prompt = (
     "다음 기사 내용을 단순하게 요약하지 말고, 서사 구조와 맥락을 살려 3~5문장으로 풍부하게 요약해줘. "
-    "이슈가 발생한 배경과 원인, 참여자들이 주장하는 핵심 내용이 주장에 담긴 사회적 의미나 쟁점이 포함되도록 작성해줘. "
-    "감정적이지 않고 객관적인 어조를 유지하되, 논쟁의 구조는 드러나게 써줘.\n\n"
+    "이슈의 배경과 원인, 참여자들의 주장, 사회적 의미와 쟁점을 포함해줘. 객관적인 어조로 서술해줘.\n\n"
 )
 
 def preprocess_function(examples):
@@ -89,12 +95,10 @@ trainer = Trainer(
 )
 
 trainer.train()
-```
-
-
-## 📌 추론 코드 예시
-
-```python
+🚀 추론 코드 예시
+python
+복사
+편집
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import torch
 
@@ -119,16 +123,25 @@ summary_ids = model.generate(**inputs, max_new_tokens=200, num_beams=4)
 summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
 
 print(summary)
-```
+📦 설치 모듈
+bash
+복사
+편집
+pip install torch transformers accelerate datasets
+프롬프트 튜닝 학습 시에는 아래 모듈도 필요합니다:
 
+bash
+복사
+편집
+pip install peft
+📄 라이선스
+✅ 기반 모델: Apache 2.0 License
 
-## 🔓 라이선스
+📁 학습 데이터: 비공개 (비상업적 연구 목적 사용 가능)
 
-* 기반 모델: Apache 2.0 License
-* 학습 데이터: 비공개 / 연구 및 비상업적 사용 가능
+🙋‍♀️ 제작자 정보
+이름: 류현정 (Hienchong)
 
-## 🙋‍♀️ 제작자 정보
+Hugging Face: https://huggingface.co/hienchong
 
-* 이름: 류현정 (Hienchong)
-* Hugging Face: [https://huggingface.co/hienchong](https://huggingface.co/hienchong)
-* 모델 페이지: [https://huggingface.co/hienchong/Maildan\_kobart\_v3](https://huggingface.co/hienchong/Maildan_kobart_v3)
+모델 페이지: https://huggingface.co/hienchong/Maildan_kobart_v3

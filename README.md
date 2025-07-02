@@ -125,7 +125,7 @@ summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
 print(summary)
 ```
 
-📦 설치 모듈
+##📦 설치 모듈
 
 🛠️ 설치 모듈 및 역할
 
@@ -146,13 +146,13 @@ bash
 pip install peft
 ```
 
-📄 라이선스
+##📄 라이선스
 
-✅ 기반 모델: Apache 2.0 License
-📁 학습 데이터: 비공개 (비상업적 연구 목적 사용 가능)
+- 기반 모델: Apache 2.0 License
+- 학습 데이터: 비공개 (비상업적 연구 목적 사용 가능)
 
-🙋‍♀️ 제작자 정보
+##🙋‍♀️ 제작자 정보
 
-이름: 류현정 (Hienchong)
-Hugging Face: https://huggingface.co/hienchong
-모델 페이지: https://huggingface.co/hienchong/Maildan_kobart_v3
+- 이름: 류현정 (Hienchong)
+- Hugging Face: https://huggingface.co/hienchong
+- 모델 페이지: https://huggingface.co/hienchong/Maildan_kobart_v3

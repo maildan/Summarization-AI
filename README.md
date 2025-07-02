@@ -5,7 +5,6 @@ maildan_AI
 
 **Maildan\_kobart\_v3**는 한국어 텍스트 요약 및 자연스러운 이어쓰기 생성을 목적으로 개발된 모델입니다. 본 모델은 한국어에 특화된 사전학습 모델 **KoBART**(`gogamza/kobart-base-v2`)를 기반으로, 프롬프트 기반 seq2seq 방식으로 파인튜닝 되었습니다.
 
----
 
 ## 🧠 모델 개요
 
@@ -15,7 +14,6 @@ maildan_AI
 * **기반 모델**: [gogamza/kobart-base-v2](https://huggingface.co/gogamza/kobart-base-v2)
 * **출력 형태**: 배경, 원인, 쟁점 등 문맥을 반영한 자연스러운 요약 또는 이어쓰기 문장
 
----
 
 ## 🔍 모델 주요 기능 (Top 3 Features)
 
@@ -25,11 +23,9 @@ maildan_AI
 
 > 📌 사용 범위: 한국어 뉴스, 이메일, 회의록 등의 문서를 논리적이고 풍부한 요약으로 재구성하는 데 활용됩니다.
 
----
 
 ## 🏗️ 모델 구조 및 아키텍처
-
-```
+---
 입력 문장 + 프롬프트
         │
         ▼
@@ -41,12 +37,11 @@ maildan_AI
         │
         ▼
  출력 문장 (풍부하고 자연스러운 요약문)
-```
+---
 
 * **KoBART**는 한국어 BART 구조로, 문맥을 양방향으로 이해하고 자연스러운 출력을 생성하는 데 강점을 가집니다.
 * Seq2Seq 구조 덕분에, 문장을 조건부로 생성할 수 있어 요약, 번역, 이어쓰기에 최적입니다.
 
----
 
 ## 🧪 파인튜닝 코드 예시
 
@@ -95,7 +90,6 @@ trainer = Trainer(
 trainer.train()
 ```
 
----
 
 ## 📌 추론 코드 예시
 
@@ -126,22 +120,11 @@ summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
 print(summary)
 ```
 
----
 
 ## 🔓 라이선스
 
 * 기반 모델: Apache 2.0 License
 * 학습 데이터: 비공개 / 연구 및 비상업적 사용 가능
-
----
-
-## 🧭 향후 계획
-
-* ROUGE, BLEU 기반 정량 성능 수치 추가 예정
-* Gradio/Streamlit 기반 데모 페이지 개발 예정
-* 다양한 Task (메일 응답 생성, 뉴스 해설 등)로 세분화된 응용 확대
-
----
 
 ## 🙋‍♀️ 제작자 정보
 

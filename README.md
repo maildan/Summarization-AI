@@ -147,6 +147,7 @@ pip install torch transformers accelerate datasets peft
 bash
 pip install peft
 ```
+-> 프롬프트시 해당 모듈 설치치
 
 ## 📄 라이선스
 

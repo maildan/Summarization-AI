@@ -73,7 +73,7 @@ async def summarize(req: SummarizeRequest):
         return {"summary": summary}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-'''
+```
 
 ## 🛠️ 설치 모듈 및 역할
 

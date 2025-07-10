@@ -32,6 +32,49 @@
 3. **경량 추론 최적화**  
    상대적으로트
 
+## FastAPI Kobart 요약 API
+아래는 Kobart 모델을 활용한 FastAPI 서버 예제 코드입니다.
+```python
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+import torch
+
+app = FastAPI()
+
+model_name = "hienchong/Maildan_kobart_v3"
+device = "cuda" if torch.cuda.is_available() else "cpu"
+
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForSeq2SeqLM.from_pretrained(model_name).to(device)
+
+class SummarizeRequest(BaseModel):
+    article: str
+
+prompt = (
+    "다음 기사 내용을 단순하게 요약하지 말고, 서사 구조와 맥락을 살려 3~5문장으로 풍부하게 요약해줘. "
+    "이슈가 발생한 배경과 원인, 참여자들이 주장하는 핵심 내용이 주장에 담긴 사회적 의미나 쟁점이 포함되도록 작성해줘. "
+    "감정적이지 않고 객관적인 어조를 유지하되, 논쟁의 구조는 드러나게 써줘.\n\n"
+)
+
+@app.post("/summarize")
+async def summarize(req: SummarizeRequest):
+    try:
+        full_input = prompt + "문장: " + req.article + "\n\n글:"
+        inputs = tokenizer(full_input, return_tensors="pt", max_length=1024, truncation=True).to(device)
+        summary_ids = model.generate(
+            **inputs,
+            max_new_tokens=200,
+            num_beams=4,
+            early_stopping=True,
+            do_sample=False
+        )
+        summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+        return {"summary": summary}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+'''
+
 ## 🛠️ 설치 모듈 및 역할
 
 ```python
